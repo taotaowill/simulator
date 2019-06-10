@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2018 LG Electronics, Inc.
  *
  * This software contains code licensed as described in LICENSE.
@@ -8,7 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using HD = global::Apollo.Hdmap;
+using HD = global::apollo.hdmap;
 
 public class MapLaneSection : MonoBehaviour
 {
@@ -32,6 +32,10 @@ public class MapLaneSection : MonoBehaviour
         for (var i = 0; i < lanes.Count; i++)
         {
             var lane = lanes[i];
+            // set default left/right bound type.
+            lane.leftBoundType = HD.LaneBoundaryType.Type.DOTTED_WHITE;
+            lane.rightBoundType = HD.LaneBoundaryType.Type.DOTTED_WHITE;
+
             var idx = 1; // index to compute vector from lane to otherLane and distance between those two lanes
             var laneDir = (lane.segment.targetWorldPositions[1] - lane.segment.targetWorldPositions[0]).normalized;
             var minDistLeft = 50f;
@@ -110,20 +114,20 @@ public class MapLaneSection : MonoBehaviour
                 if (lane.leftForward != null) lane.leftReverse = null; // null lane left reverse if not inside lane TODO right side
             }
         }
-        
+
         int wayCount = isOneWay ? 1 : 2;
         for (int i = 0; i < wayCount; i++)
         {
             MapLaneSegmentBuilder currentLane = null;
             List<MapLaneSegmentBuilder> edited = new List<MapLaneSegmentBuilder>();
             List<MapLaneSegmentBuilder> currentLanes = i == 0 ? lanesForward : lanesReverse;
-            
+
             foreach (var lane in currentLanes)
             {
                 if (lane.rightForward == null)
                 {
                     currentLane = lane;
-                    lane.rightBoundType = HD.LaneBoundaryType.Types.Type.Curb;
+                    lane.rightBoundType = HD.LaneBoundaryType.Type.CURB;
                     break;
                 }
             }
@@ -139,11 +143,11 @@ public class MapLaneSection : MonoBehaviour
             // set left boundary type for the left most lane
             if (isOneWay)
             {
-                edited[edited.Count-1].leftBoundType = HD.LaneBoundaryType.Types.Type.Curb;
+                edited[edited.Count-1].leftBoundType = HD.LaneBoundaryType.Type.CURB;
             }
             else
             {
-                edited[edited.Count-1].leftBoundType = HD.LaneBoundaryType.Types.Type.DoubleYellow;
+                edited[edited.Count-1].leftBoundType = HD.LaneBoundaryType.Type.DOUBLE_YELLOW;
             }
         }
     }

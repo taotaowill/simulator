@@ -9,7 +9,7 @@ Visit our website here: [https://www.lgsvlsimulator.com](https://www.lgsvlsimula
 Visit our Github here: [https://github.com/lgsvl/simulator](https://github.com/lgsvl/simulator)
 
 <div class="video-container">
-<iframe style="display:block;margin:auto;" width="560" height="340" src="https://www.youtube.com/embed/NgW1P75wiuA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="display:block;margin:auto;" width="560" height="340" src="https://www.youtube.com/embed/VJk8dhXnAFI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 <br>
@@ -26,15 +26,24 @@ Visit our Github here: [https://github.com/lgsvl/simulator](https://github.com/l
 * [Running with Autoware](autoware-instructions.md)
 * [Running with Apollo 3.5](apollo3-5-instructions.md)
 * [Running with Apollo 3.0](apollo-instructions.md)
-* [Python API](python-api.md)
-* [Python API Examples](api-quickstart-descriptions.md)
+
+### Python API
+
+* [Python API Guide](python-api.md)
+* [Python API Quickstart Examples](api-quickstart-descriptions.md)
+* [Python API Use Case Examples](api-example-descriptions.md)
+* [How to run a scenario](api-how-to-run-scenario.md)
 
 ### Tutorials
 
 * [Map Annotation](map-annotation.md)
-* [NPC Map Navigation](npc-map-navigation.md)
-* [How to add a new ego vehicle](add-new-ego-vehicle.md)
+* [Reinforcement Learning with OpenAI Gym](openai-gym.md)
+* [Deep Learning Lane Following Model](lane-following.md)
 * [How to create a simple ROS2-based AD stack with LGSVL Simulator](create-ros2-ad-stack.md)
+* [How to add a new ego vehicle](add-new-ego-vehicle.md)
+* [NPC Map Navigation](npc-map-navigation.md)
+
+
 
 ### Support
 

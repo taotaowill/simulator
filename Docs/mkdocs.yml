@@ -28,13 +28,18 @@ nav:
   - 'Running with Autoware': 'autoware-instructions.md'
   - 'Running with Apollo 3.5': 'apollo3-5-instructions.md'
   - 'Running with Apollo 3.0': 'apollo-instructions.md'
-  - 'Python API': 'python-api.md'
-  - 'Python API Examples': 'api-quickstart-descriptions.md'
+- 'Python API':
+  - 'Python API Guide': 'python-api.md'
+  - 'Python API Quickstart Examples': 'api-quickstart-descriptions.md'
+  - 'Python API Use Case Examples': 'api-example-descriptions.md'
+  - 'How to Run a Scenario' : 'api-how-to-run-scenario.md'
 - 'Tutorials':
   - 'Map Annotation': 'map-annotation.md'
-  - 'NPC Map Navigation': 'npc-map-navigation.md'
-  - 'How to add a new ego vehicle': 'add-new-ego-vehicle.md'
+  - 'Reinforcement Learning with OpenAI Gym': 'openai-gym.md'
+  - 'Deep Learning Lane Following Model': 'lane-following.md'
   - 'How to create a simple ROS2-based AD stack': 'create-ros2-ad-stack.md'
+  - 'How to add a new ego vehicle': 'add-new-ego-vehicle.md'
+  - 'NPC Map Navigation': 'npc-map-navigation.md'
 - 'Support':
   - 'FAQ': 'faq.md'
   - 'Contributing': 'contributing.md'

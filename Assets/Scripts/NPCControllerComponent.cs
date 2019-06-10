@@ -538,7 +538,7 @@ public class NPCControllerComponent : MonoBehaviour
         simpleBoxCollider.enabled = isPhysicsSimple;
         complexBoxCollider.enabled = !isPhysicsSimple;
         wheelColliderHolder.SetActive(!isPhysicsSimple);
-        if (Control != ControlType.Waypoints)
+        if (Control != ControlType.Waypoints && Control != ControlType.FollowLane)
         {
             if (isPhysicsSimple)
                 normalSpeed = Random.Range(normalSpeedRange.x, normalSpeedRange.y);
@@ -583,11 +583,6 @@ public class NPCControllerComponent : MonoBehaviour
         wheelColliderFL.motorTorque = motorTorque;
         wheelColliderRL.motorTorque = motorTorque;
         wheelColliderRR.motorTorque = motorTorque;
-    }
-
-    public void SetPhysicsMode(bool isPhysicsSimple)
-    {
-        NPCManager.Instance.isSimplePhysics = isPhysicsSimple;
     }
 
     public Vector3 GetVelocity()
@@ -681,9 +676,10 @@ public class NPCControllerComponent : MonoBehaviour
 
         currentSpeed += speedAdjustRate * Time.deltaTime * (targetSpeed - currentSpeed);
         currentSpeed = currentSpeed < 0.01f ? 0f : currentSpeed;
+        currentSpeed = currentSpeed > normalSpeed ? normalSpeed : currentSpeed;
 
         currentSpeed_measured = isPhysicsSimple ? (((rb.position - lastRBPosition) / Time.deltaTime).magnitude) * 2.23693629f : rb.velocity.magnitude * 2.23693629f; // MPH
-        if (isPhysicsSimple)
+        if (isPhysicsSimple && Time.deltaTime > 0)
         {
             simpleVelocity = (rb.position - lastRBPosition) / Time.deltaTime;
         
@@ -1739,16 +1735,13 @@ public class NPCControllerComponent : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (ROSAgentManager.Instance.currentMode != StartModeTypes.API)
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Ground And Road") && collision.gameObject.layer != LayerMask.NameToLayer("NPC"))
         {
-            if (collision.gameObject.layer != LayerMask.NameToLayer("Ground And Road"))
-            {
-                isForcedStop = true;
-                ForceNPCHazards(true);
-            }
-            return;
-        }
+            isForcedStop = true;
+            ForceNPCHazards(true);
 
-        Api.ApiManager.Instance.AddCollision(gameObject, collision);
+            if (ROSAgentManager.Instance.currentMode == StartModeTypes.API)
+                Api.ApiManager.Instance.AddCollision(gameObject, collision);
+        } 
     }
 }
